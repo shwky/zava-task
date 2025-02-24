@@ -33,7 +33,7 @@ This system manages:
 
 ## Setup
 ```bash
-git clone https://github.com/aureyia/exercise
+git clone https://github.com/sam-holder-zava/full-stack-exercise
 ```
 ### Starting the frontend
 ```bash
