@@ -26,7 +26,10 @@ This system manages:
  - Calculations for the total weight should be performed on the backend.
  - Feel free to adapt the current API to support this, or to introduce a new API as you see fit.
 
-3. As part of the pair programming interview, we will implement a new feature together. 
+## Pair programming interview
+
+As part of the pair programming interview, we will talk through the solutions you've implemented to the above problems. w
+We will then implement a new feature together. 
 
 ## Dependencies
 
