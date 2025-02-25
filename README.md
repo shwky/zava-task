@@ -28,7 +28,7 @@ This system manages:
 
 ## Pair programming interview
 
-As part of the pair programming interview, we will talk through the solutions you've implemented to the above problems. w
+As part of the pair programming interview, we will talk through the solutions you've implemented to the above problems.
 We will then implement a new feature together. 
 
 ## Dependencies
