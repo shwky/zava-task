@@ -33,7 +33,7 @@ We will then implement a new feature together.
 
 ## Dependencies
 
-- Node.js (20.0.0 and above)
+- Node.js (22+)
 - npm 
 
 ## Setup
