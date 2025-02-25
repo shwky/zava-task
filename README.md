@@ -26,6 +26,8 @@ This system manages:
  - Calculations for the total weight should be performed on the backend.
  - Feel free to adapt the current API to support this, or to introduce a new API as you see fit.
 
+3. As part of the pair programming interview, we will implement a new feature together. 
+
 ## Dependencies
 
 - Node.js (20.0.0 and above)
