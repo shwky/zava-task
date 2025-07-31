@@ -23,7 +23,7 @@ onMounted(() => {
     <Button class="mr-2" @click="fetchData" data-qa="refresh-button">Refresh</Button>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
       <TruckList :trucks="trucks" />
-      <ParcelList :parcels="parcels" />
+      <ParcelList :parcels="parcels" :trucks="trucks" />
     </div>
   </div>
 </template>

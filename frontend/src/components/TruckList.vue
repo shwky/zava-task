@@ -36,6 +36,10 @@ const formatDate = (dateString) => {
               Registration: {{ truck.registration }}
             </div>
             
+            <div v-if="truck.totalWeight !== null" data-qa="truck-registration">
+              Total Weight: {{ truck.totalWeight }}
+            </div>
+            
             <div class="text-sm text-muted-foreground">
               <span data-qa="truck-created-date">
                 Created: {{ formatDate(truck.createdAt) }}

@@ -2,13 +2,49 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TruckRepository } from './TruckRepository.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { Truck } from './types/truck.type';
+import { ParcelRepository } from './ParcelRepository.service';
 
 describe('TruckRepository', () => {
   let repository: TruckRepository;
 
+  const mockParcelRepository = {
+    getAll: jest.fn().mockReturnValue([
+    {
+      id: 'a',
+      createdAt: '2025-01-01',
+      updatedAt: '2025-01-01',
+      weight: 8.0,
+      truckId: 1,
+      destination: 'London'
+    },
+    {
+      id: 'b',
+      createdAt: '2025-01-01',
+      updatedAt: '2025-01-01',
+      weight: 10.2,
+      truckId: 1,
+      destination: 'Manchester'
+    },
+    {
+      id: 'c',
+      createdAt: '2025-01-01',
+      updatedAt: '2025-01-01',
+      weight: 16.7,
+      truckId: null,
+      destination: 'Birmingham'
+    }    
+  ]),
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TruckRepository],
+      providers: [
+        TruckRepository, 
+         {
+          provide: ParcelRepository,
+          useValue: mockParcelRepository,
+        },
+      ]      
     }).compile();
 
     repository = module.get<TruckRepository>(TruckRepository);
@@ -19,6 +55,7 @@ describe('TruckRepository', () => {
       const trucks = repository.getAll();
       expect(trucks).toHaveLength(3);
       expect(trucks[0].id).toBe('1');
+      expect(trucks[0].totalWeight).toBe(18.2); // Initially, total
     });
   });
 

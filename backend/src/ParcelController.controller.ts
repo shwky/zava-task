@@ -25,4 +25,22 @@ export class ParcelController {
   updateParcel(@Body() body): Parcel {
     return this.parcelRepository.update(body)
   }
+
+  @Put(':id/truck-load/:truckId')
+  async assignTruck(
+    @Param('id') id: string,
+    @Param('truckId') truckId: string
+  ): Promise<Parcel>  {
+    return this.parcelRepository.update({id,truckId});
+  }
+
+  @Put(':id/truck-unload/')
+  async unassignTruck(
+    @Param('id') id: string,
+  ): Promise<Parcel>  {
+    return this.parcelRepository.update({id,truckId:null});
+  }
+
+
 }
+

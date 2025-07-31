@@ -14,10 +14,15 @@ describe('ParcelRepository', () => {
     repository = module.get<ParcelRepository>(ParcelRepository);
   });
 
+  beforeEach(() => {
+    repository = new ParcelRepository(); 
+  });
+
   describe('getAll', () => {
     it('should return empty array by default', () => {
       const parcels = repository.getAll();
-      expect(parcels).toEqual([]);
+      //expect(parcels).toEqual([]);
+      expect(parcels).toHaveLength(3);
     });
   });
 
@@ -31,7 +36,7 @@ describe('ParcelRepository', () => {
       expect(savedParcel.createdAt).toBeDefined();
       
       const allParcels = repository.getAll();
-      expect(allParcels).toHaveLength(1);
+      expect(allParcels).toHaveLength(4);
     });
 
     it('should throw error if weight is not positive', () => {
@@ -71,7 +76,7 @@ describe('ParcelRepository', () => {
       
       repository.delete(parcel.id);
       const parcels = repository.getAll();
-      expect(parcels).toHaveLength(0);
+      expect(parcels).toHaveLength(3);
     });
 
     it('should throw error if parcel not found', () => {

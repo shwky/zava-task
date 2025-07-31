@@ -1,9 +1,10 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Truck } from './types/truck.type';
+import { ParcelRepository } from './ParcelRepository.service';
 
 @Injectable()
 export class TruckRepository {
-
+  constructor(private parcelRepository: ParcelRepository) {}
   // No need to use a database for this assignment - we'll store the trucks in memory.
   private trucks: Truck[] = [
     {
@@ -16,7 +17,7 @@ export class TruckRepository {
       id: '2',
       registration: 'DEF456',
       createdAt: '2025-01-01',
-      updatedAt: '2025-01-01'
+      updatedAt: '2025-01-01',
     },
     {
       id: '3',
@@ -25,8 +26,26 @@ export class TruckRepository {
       updatedAt: '2025-01-01'
     }
   ]
-
+  
   getAll(): Truck[] {
+    let parcels = this.parcelRepository.getAll();
+
+    // Use an object to accumulate weight per truckId
+    const truckWeights: { [key: string]: number } = {};
+   
+    parcels.forEach(parcel => {
+      if(parcel.truckId !== null){
+        // Initialize the weight accumulator
+        if (!truckWeights[parcel.truckId]) {
+          truckWeights[parcel.truckId] = 0;
+        }
+        truckWeights[parcel.truckId] += parcel.weight;
+      }
+    })
+    this.trucks.forEach(truck => {
+      truck.totalWeight = truckWeights[truck.id] || 0;
+    })
+    console.log(this.trucks)
     return this.trucks
   }
 
